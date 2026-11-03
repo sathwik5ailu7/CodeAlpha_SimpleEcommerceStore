@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopZone — Your Favorite E-Commerce Store</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <i class="fas fa-shopping-bag"></i> Shop<span>Zone</span>
+      </a>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+      </div>
+      <nav class="nav-links">
+        <a href="/" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+        <a href="/cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart <span id="cartBadge" class="badge hidden">0</span></a>
+        <a href="/orders.html" class="nav-link auth-only hidden"><i class="fas fa-box"></i> Orders</a>
+        <a href="/login.html" class="nav-link guest-only"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <div class="user-menu auth-only hidden">
+          <button class="user-btn" id="userMenuBtn">
+            <i class="fas fa-user-circle"></i> <span id="userName">User</span>
+          </button>
+          <div class="dropdown" id="userDropdown">
+            <a href="/profile.html"><i class="fas fa-user"></i> Profile</a>
+            <a href="/orders.html"><i class="fas fa-box"></i> My Orders</a>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="heroSection">
+    <div class="hero-content">
+      <h1>Discover Amazing Products</h1>
+      <p>Shop the latest trends with unbeatable prices and fast delivery</p>
+      <a href="#products" class="btn btn-primary btn-lg">Shop Now <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories-section">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Categories loaded dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="products-section" id="products">
+    <div class="container">
+      <div class="products-header">
+        <h2 class="section-title">Our Products</h2>
+        <div class="filters">
+          <select id="categoryFilter" class="filter-select">
+            <option value="all">All Categories</option>
+          </select>
+          <select id="sortFilter" class="filter-select">
+            <option value="">Sort By</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <!-- Products loaded dynamically -->
+      </div>
+      <div class="loading" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Loading products...</p>
+      </div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3><i class="fas fa-shopping-bag"></i> ShopZone</h3>
+          <p>Your one-stop destination for amazing products at unbeatable prices.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="/">Home</a>
+          <a href="/cart.html">Cart</a>
+          <a href="/orders.html">Orders</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p><i class="fas fa-envelope"></i> support@shopzone.com</p>
+          <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 ShopZone — CodeAlpha Internship Project. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — ShopZone</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Zone</span></a>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+      </div>
+      <nav class="nav-links">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart <span id="cartBadge" class="badge hidden">0</span></a>
+        <a href="/orders.html" class="nav-link auth-only hidden"><i class="fas fa-box"></i> Orders</a>
+        <a href="/login.html" class="nav-link guest-only"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <div class="user-menu auth-only hidden">
+          <button class="user-btn" id="userMenuBtn">
+            <i class="fas fa-user-circle"></i> <span id="userName">User</span>
+          </button>
+          <div class="dropdown" id="userDropdown">
+            <a href="/profile.html"><i class="fas fa-user"></i> Profile</a>
+            <a href="/orders.html"><i class="fas fa-box"></i> My Orders</a>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="product-detail-page">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">Home</a> / <span id="breadcrumbCategory">Category</span> / <span id="breadcrumbProduct">Product</span>
+      </div>
+
+      <div class="product-detail" id="productDetail">
+        <div class="loading" id="loadingSpinner">
+          <div class="spinner"></div>
+          <p>Loading product...</p>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      <section class="related-section" id="relatedSection" style="display:none">
+        <h2 class="section-title">Related Products</h2>
+        <div class="products-grid" id="relatedGrid"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 ShopZone — CodeAlpha Internship Project. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/product.js"></script>
+</body>
+</html>

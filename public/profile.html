@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile — ShopZone</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Zone</span></a>
+      <nav class="nav-links">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/cart.html" class="nav-link"><i class="fas fa-shopping-cart"></i> Cart <span id="cartBadge" class="badge hidden">0</span></a>
+        <a href="/orders.html" class="nav-link"><i class="fas fa-box"></i> Orders</a>
+        <div class="user-menu auth-only hidden">
+          <button class="user-btn" id="userMenuBtn">
+            <i class="fas fa-user-circle"></i> <span id="userName">User</span>
+          </button>
+          <div class="dropdown" id="userDropdown">
+            <a href="/profile.html"><i class="fas fa-user"></i> Profile</a>
+            <a href="/orders.html"><i class="fas fa-box"></i> My Orders</a>
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <div class="container">
+      <h1 class="page-title"><i class="fas fa-user"></i> My Profile</h1>
+      <div class="profile-card">
+        <form id="profileForm" class="auth-form">
+          <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="email" disabled>
+          </div>
+          <div class="form-group">
+            <label for="phone"><i class="fas fa-phone"></i> Phone</label>
+            <input type="tel" id="phone">
+          </div>
+          <div class="form-group">
+            <label for="address"><i class="fas fa-map-marker-alt"></i> Address</label>
+            <textarea id="address" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="updateBtn">
+            <i class="fas fa-save"></i> Update Profile
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2024 ShopZone — CodeAlpha Internship Project. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/auth.js"></script>
+  <script>
+    if (!getToken()) window.location.href = '/login.html';
+
+    async function loadProfile() {
+      try {
+        const res = await api('/api/auth/profile');
+        document.getElementById('name').value = res.user.name;
+        document.getElementById('email').value = res.user.email;
+        document.getElementById('phone').value = res.user.phone || '';
+        document.getElementById('address').value = res.user.address || '';
+      } catch (err) {
+        showToast('Failed to load profile', 'error');
+      }
+    }
+
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('updateBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+      try {
+        await api('/api/auth/profile', {
+          method: 'PUT',
+          body: JSON.stringify({
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+          }),
+        });
+        showToast('Profile updated successfully!', 'success');
+      } catch (err) {
+        showToast(err.message || 'Failed to update profile', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save"></i> Update Profile';
+      }
+    });
+
+    loadProfile();
+  </script>
+</body>
+</html>
