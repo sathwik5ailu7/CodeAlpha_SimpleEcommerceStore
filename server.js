@@ -43,6 +43,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 E-Commerce Server running on http://localhost:${PORT}`);
+const HOST = '0.0.0.0';
+
+app.listen(PORT, HOST, () => {
+  console.log(`🚀 E-Commerce Server running on http://${HOST}:${PORT}`);
 });
