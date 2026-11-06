@@ -46,5 +46,5 @@ app.use((err, req, res, next) => {
 const HOST = '0.0.0.0';
 
 app.listen(PORT, HOST, () => {
-  console.log(`🚀 E-Commerce Server running on http://${HOST}:${PORT}`);
+  console.log(`🚀 E-Commerce Server running on http://localhost:${PORT}`);
 });
