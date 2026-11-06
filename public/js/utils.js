@@ -52,7 +52,7 @@ function showToast(message, type = 'info') {
 
 // Format price
 function formatPrice(price) {
-  return `$${Number(price).toFixed(2)}`;
+  return `₹${Number(price).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
 // Generate star rating HTML
